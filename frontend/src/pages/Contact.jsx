@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, ChevronDown } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
 const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
@@ -19,6 +19,50 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
+  const [openFAQ, setOpenFAQ] = useState(null);
+
+  const faqs = [
+    {
+      id: 1,
+      question: "What is your shipping policy?",
+      answer: "We offer free standard shipping on orders over PKR 5,000. Standard delivery takes 3-5 business days within Lahore and 5-7 days for other cities. Express shipping is available for an additional fee."
+    },
+    {
+      id: 2,
+      question: "How can I track my order?",
+      answer: "Once your order ships, you'll receive a tracking number via email. You can use this number on our order tracking page or the carrier's website to monitor your shipment in real-time."
+    },
+    {
+      id: 3,
+      question: "What is your return and exchange policy?",
+      answer: "We offer a 30-day return window from the date of purchase. Items must be unworn with original tags attached. Exchanges are free, while return shipping is complimentary on orders within Lahore."
+    },
+    {
+      id: 4,
+      question: "Do you offer international shipping?",
+      answer: "Yes, we ship internationally! International shipping rates vary by location. Please contact our concierge team at concierge@elegancecouture.com for international inquiries."
+    },
+    {
+      id: 5,
+      question: "How do I know my size?",
+      answer: "Refer to our detailed size guide available on every product page. Measurements are provided in both CM and inches. For personalized sizing assistance, contact our concierge team or visit our flagship studio."
+    },
+    {
+      id: 6,
+      question: "What payment methods do you accept?",
+      answer: "We accept all major credit cards (Visa, MasterCard, American Express), debit cards, bank transfers, and secure digital payment methods. All transactions are encrypted for your security."
+    },
+    {
+      id: 7,
+      question: "Can I modify or cancel my order?",
+      answer: "Orders can be modified or cancelled within 24 hours of purchase. After that, items are typically in our fulfillment process. Please contact us immediately at concierge@elegancecouture.com for assistance."
+    },
+    {
+      id: 8,
+      question: "Do you offer styling advice?",
+      answer: "Absolutely! Our styling concierge team is available to provide personalized recommendations. Visit our flagship studio, call us, or email with details about your style preferences, and we'll create custom lookbooks for you."
+    }
+  ];
 
   // Pre-fill form if user is logged in
   useEffect(() => {
@@ -129,7 +173,7 @@ const Contact = () => {
             </div>
 
             {/* Contact Form */}
-            <div className="w-full lg:w-2/3">
+            <div className="w-full lg:w-2/3" id="contact-form">
               <h3 className="text-lg font-serif italic text-gray-900 mb-8 border-b border-gray-100 pb-4">
                 Send us a Message
               </h3>
@@ -244,7 +288,77 @@ const Contact = () => {
 
           </div>
         </div>
-      </main>
+
+        {/* FAQ Section */}
+        <div className="mt-28">
+          <div className="text-center mb-16 animate-fade-in">
+            <p className="text-[10px] md:text-xs font-bold tracking-[0.5em] text-gray-400 uppercase mb-4">
+              HELPFUL RESOURCES
+            </p>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif italic tracking-wider mb-6 text-gray-900">
+              Frequently Asked Questions
+            </h2>
+            <div className="w-16 h-px bg-black/10 mx-auto" />
+          </div>
+
+          <div className="bg-white border border-gray-100 shadow-sm">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+              <div className="space-y-4">
+                {faqs.map((faq, index) => (
+                  <div 
+                    key={faq.id}
+                    className="border border-gray-100 hover:border-gray-300 transition-colors"
+                  >
+                    <button
+                      onClick={() => setOpenFAQ(openFAQ === faq.id ? null : faq.id)}
+                      className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-gray-50/50 transition-colors"
+                    >
+                      <h3 className="text-sm md:text-base font-medium text-gray-900 pr-8">
+                        {faq.question}
+                      </h3>
+                      <ChevronDown 
+                        size={20}
+                        className={`flex-shrink-0 text-gray-400 transition-transform duration-300 ${
+                          openFAQ === faq.id ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+                    {openFAQ === faq.id && (
+                      <div className="px-6 py-5 bg-gray-50/30 border-t border-gray-100 animate-in slide-in-from-top-2 duration-300">
+                        <p className="text-sm md:text-base text-gray-600 leading-relaxed font-light">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-12 p-6 md:p-8 bg-gray-50 border border-gray-100">
+                <p className="text-sm text-gray-600 mb-4">
+                  <span className="font-medium text-gray-900">Still have questions?</span> Our concierge team is here to help. Reach out to us via email, phone, or visit our flagship studio.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <a 
+                    href="#contact-form"
+                    className="px-6 py-3 bg-black text-white text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-800 transition-colors inline-flex items-center justify-center gap-2"
+                  >
+                    <Mail size={14} />
+                    Email Us
+                  </a>
+                  <a 
+                    href="tel:+923001234567"
+                    className="px-6 py-3 border border-black text-black text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-colors inline-flex items-center justify-center gap-2"
+                  >
+                    <Phone size={14} />
+                    Call Us
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </main>
       
       <Footer />
     </div>

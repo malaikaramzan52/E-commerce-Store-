@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-white border-t border-gray-100 pt-8 pb-0 flex flex-col">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-8">
           
           {/* Brand & Newsletter */}
           <div className="lg:col-span-1">
@@ -29,10 +29,20 @@ const Footer = () => {
             <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4">Shop</h4>
             <ul className="space-y-2">
               <li><Link to="#" className="text-xs text-gray-500 hover:text-black transition-colors">New Arrivals</Link></li>
-              <li><Link to="#" className="text-xs text-gray-500 hover:text-black transition-colors">Men's Collection</Link></li>
               <li><Link to="#" className="text-xs text-gray-500 hover:text-black transition-colors">Women's Collection</Link></li>
-              <li><Link to="#" className="text-xs text-gray-500 hover:text-black transition-colors">Accessories</Link></li>
               <li><Link to="#" className="text-xs text-gray-500 hover:text-black transition-colors">Sale</Link></li>
+            </ul>
+          </div>
+
+          {/* Pages */}
+          <div>
+            <h4 className="text-xs font-bold text-gray-900 uppercase tracking-widest mb-4">Pages</h4>
+            <ul className="space-y-2">
+              <li><Link to="/" className="text-xs text-gray-500 hover:text-black transition-colors">Home</Link></li>
+              <li><Link to="/shop" className="text-xs text-gray-500 hover:text-black transition-colors">Shop</Link></li>
+              <li><Link to="/sale" className="text-xs text-gray-500 hover:text-black transition-colors">Sale</Link></li>
+              <li><Link to="/about" className="text-xs text-gray-500 hover:text-black transition-colors">About Us</Link></li>
+              <li><Link to="/contact" className="text-xs text-gray-500 hover:text-black transition-colors">Contact Us</Link></li>
             </ul>
           </div>
 
@@ -43,7 +53,7 @@ const Footer = () => {
               <li><Link to="#" className="text-xs text-gray-500 hover:text-black transition-colors">FAQ</Link></li>
               <li><Link to="#" className="text-xs text-gray-500 hover:text-black transition-colors">Shipping & Returns</Link></li>
               <li><Link to="#" className="text-xs text-gray-500 hover:text-black transition-colors">Size Guide</Link></li>
-              <li><Link to="#" className="text-xs text-gray-500 hover:text-black transition-colors">Contact Us</Link></li>
+              <li><Link to="/contact" className="text-xs text-gray-500 hover:text-black transition-colors">Contact Us</Link></li>
               <li><Link to="#" className="text-xs text-gray-500 hover:text-black transition-colors">Track Your Order</Link></li>
             </ul>
           </div>
